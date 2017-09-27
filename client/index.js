@@ -4,7 +4,11 @@ import 'core-js/es6/set';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import App from './_components/App';
+
 ReactDOM.render(
-  <h1>Hello, world!</h1>,
+  <div className="app">
+      <App />
+  </div>,
   document.getElementById('root')
 );
