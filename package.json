@@ -1,0 +1,35 @@
+{
+  "name": "react16-starter",
+  "version": "1.0.0",
+  "description": "React 16 starter sample project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gopherLabsLtd/react16-starter.git"
+  },
+  "keywords": [
+    "react16"
+  ],
+  "author": "Gopher Labs Ltd.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gopherLabsLtd/react16-starter/issues"
+  },
+  "homepage": "https://github.com/gopherLabsLtd/react16-starter#readme",
+  "dependencies": {
+    "core-js": "^2.5.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "html-webpack-plugin": "^2.30.1",
+    "webpack": "^3.6.0"
+  }
+}
