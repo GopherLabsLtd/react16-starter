@@ -9,7 +9,7 @@ export default class Header extends React.Component {
     render() {
         return (
             <AppBar
-                title="Title"
+                title="React16 Starter + JEST"
             />
         )
     }
