@@ -6,9 +6,15 @@ import ReactDOM from 'react-dom';
 
 import App from './_components/App';
 
+import './css/app.css';
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 ReactDOM.render(
-  <div className="app">
-      <App />
-  </div>,
+  <MuiThemeProvider>
+    <div className="app">
+        <App />
+    </div>
+  </MuiThemeProvider>,
   document.getElementById('root')
 );

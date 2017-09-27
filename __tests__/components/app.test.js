@@ -5,13 +5,17 @@ import { mount } from 'enzyme';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 configure({ adapter: new Adapter() });
 
 test('App component says "App Works!"', () => {
   const wrapper = mount(
-    <App />
+    <MuiThemeProvider>
+      <App />
+    </MuiThemeProvider>
   );
 
-  const title = wrapper.find('h1');
+  const title = wrapper.find('h1#title');
   expect(title.text()).toBe('App Works!');
 });
