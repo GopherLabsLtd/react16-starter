@@ -1,4 +1,4 @@
-import App from '../../client/_components/App'
+import Header from '../../client/_components/Header'
 import React from 'react';
 import { mount } from 'enzyme';
 
@@ -12,10 +12,10 @@ configure({ adapter: new Adapter() });
 test('App component says "App Works!"', () => {
   const wrapper = mount(
     <MuiThemeProvider>
-      <App />
+      <Header />
     </MuiThemeProvider>
   );
 
-  const title = wrapper.find('h1#title');
-  expect(title.text()).toBe('App Works!');
+  const title = wrapper.find('h1');
+  expect(title.text()).toBe('React16 Starter + JEST');
 });

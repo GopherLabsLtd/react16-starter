@@ -1,7 +1,17 @@
+// React-related
 import React from 'react'
-import Header from './Header'
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Switch,
+    IndexRoute
+} from 'react-router-dom'
 
-import RaisedButton from 'material-ui/RaisedButton';
+// Components
+import Header from './Header'
+import Home from './Home'
+import UserDetails from './UserDetails'
 
 export default class App extends React.Component {
     constructor(props) {
@@ -15,16 +25,12 @@ export default class App extends React.Component {
                 <Header />
                 
                 <div className="container">
-                    <h1 id="title">
-                        App Works!
-                    </h1>
-
-                    <div>
-                        <RaisedButton label="Default" style={marginRight} />
-                        <RaisedButton label="Primary" primary={true} style={marginRight} />
-                        <RaisedButton label="Secondary" secondary={true} style={marginRight} />
-                        <RaisedButton label="Disabled" disabled={true} />
-                    </div>
+                    <Router>
+                        <Switch>
+                            <Route path="/" component={Home} exact={true} />
+                            <Route path="/userDetails/:userID" component={UserDetails} />
+                        </Switch>
+                    </Router>
                 </div>
             </div>
         )
