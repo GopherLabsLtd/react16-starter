@@ -10,6 +10,6 @@ Use this project to get started with a React16 setup + Jest testing integrated
 npm install && npm install -g webpack-dashboard
 npm start
 
-// To run the dev-server using webpack-dashboard run:
+# To run the dev-server using webpack-dashboard run:
 npm run dev
 ```
