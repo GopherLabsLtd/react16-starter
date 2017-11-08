@@ -1,4 +1,6 @@
 const path = require('path');
+const DashboardPlugin = require('webpack-dashboard/plugin');
+
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -22,5 +24,8 @@ module.exports = {
       { test: /\.(png|jpg|svg)$/, loader: 'url-loader?limit=25000' }
     ]
   },
-  plugins: [HtmlWebpackPluginConfig]
+  plugins: [
+    new DashboardPlugin(),
+    HtmlWebpackPluginConfig
+  ]
 }
