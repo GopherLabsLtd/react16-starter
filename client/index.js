@@ -13,7 +13,7 @@ import {
 
 import App from './_components/App';
 
-import './css/app.css';
+import './css/app.scss';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
