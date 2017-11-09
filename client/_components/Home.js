@@ -1,5 +1,10 @@
 // React-related
 import React from 'react'
+import PropTypes from 'prop-types' // can also come from react if react <= 15.4.0
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { firebaseConnect, isLoaded, isEmpty, dataToJS } from 'react-redux-firebase'
+
 import {
     BrowserRouter as Router,
     Route,
@@ -19,13 +24,28 @@ import INFO_ICON from 'material-ui/svg-icons/action/info';
 // Utilities
 import USERS_LIST from '../_utils/users';
 
-export default class Home extends React.Component {
+class Home extends React.Component {
     constructor(props) {
         super(props);
     }
     
     render() {
+        const { todos } = this.props;
         const marginRight = { marginRight: "10px" }
+
+        // Build Todos list if todos exist and are loaded
+        const todosList = !isLoaded(todos)
+        ? 'Loading'
+        : isEmpty(todos)
+        ? 'Todo list is empty'
+        : Object.keys(todos).map(
+            (key, id) => (
+                <div key={key}>
+                    {todos[key]}
+                </div>
+            )
+            )
+
         return (
             <div>
                 <h1 id="title">
@@ -42,7 +62,7 @@ export default class Home extends React.Component {
 
                         {USERS_LIST.map((user, i) => {
                             return(
-                                <Link to={`/userDetails/${i}`}>
+                                <Link to={`/userDetails/${i}`} key={user.name.first}>
                                     <ListItem
                                         primaryText={user.name.first + " " + user.name.last}
                                         leftAvatar={<Avatar src={user.picture.large} />}
@@ -53,6 +73,11 @@ export default class Home extends React.Component {
                         })}
                     </List>
                 </div>
+
+                <h1>Todos</h1>
+                <ul>
+                {todosList}
+                </ul>
                 
                 <div>
                     <RaisedButton label="Refresh" primary={true} style={marginRight} />
@@ -62,3 +87,18 @@ export default class Home extends React.Component {
         )
     }
 }
+
+Home.propTypes = {
+    todos: PropTypes.array,
+    firebase: PropTypes.object
+};
+  
+const wrappedTodos = firebaseConnect([
+    '/todos'
+  ])(Home)
+  
+export default connect(
+    ({firebase}) => ({
+        todos: dataToJS(firebase, 'todos'),
+    })
+)(wrappedTodos)
