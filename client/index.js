@@ -17,13 +17,40 @@ import './css/app.scss';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import { Provider } from 'react-redux'
+import { createStore, combineReducers, compose } from 'redux'
+import { reactReduxFirebase, firebaseStateReducer } from 'react-redux-firebase'
+
+// Import your firebase configurations
+import FIREBASE_CONFIGS from './_utils/firebaseConfigs';
+
+const firebaseConfig = FIREBASE_CONFIGS;
+
+const reduxFirebaseConfig = { userProfile: 'users' }
+
+// Add reactReduxFirebase store enhancer
+const createStoreWithFirebase = compose(
+  reactReduxFirebase(firebaseConfig, reduxFirebaseConfig),
+)(createStore)
+
+// Add firebase to reducers
+const rootReducer = combineReducers({
+  firebase: firebaseStateReducer
+})
+
+// Create store with reducers and initial state
+const initialState = {}
+const store = createStoreWithFirebase(rootReducer, initialState)
+
 ReactDOM.render(
-  <MuiThemeProvider>
-    <div className="app">
-      <Router basename={'/'}>
-        <App />
-      </Router>
-    </div>
-  </MuiThemeProvider>,
+  <Provider store={store}>
+    <MuiThemeProvider>
+      <div className="app">
+        <Router basename={'/'}>
+          <App />
+        </Router>
+      </div>
+    </MuiThemeProvider>
+  </Provider>,
   document.getElementById('root')
 );
